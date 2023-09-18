@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/amazon",methods=['GET'])
 def amazon():
     args = request.args
-    cat =  args.get('category')
+    cat =  args.get('cat')
 
     res = scrap_amazon(cat)
 
