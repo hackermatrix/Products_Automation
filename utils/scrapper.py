@@ -77,6 +77,7 @@ def scrap_amazon(category):
     return product_list
 
 
+print(scrap_amazon("laptop"))
 
 def scrap_flipkart(category):
     pass
