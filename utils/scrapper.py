@@ -1,4 +1,3 @@
-from curl_cffi import requests
 from bs4 import BeautifulSoup
 import json
 
@@ -51,18 +50,18 @@ def get_products_amazon2(results):
     
 
 
-
+from curl_cffi import requests
 def scrap_amazon(category):
     url = f"https://www.amazon.in/s?k={category}"
-    # headers = {'User-Agent':"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}
-    resp = requests.get(url,impersonate="chrome110")
+    headers = {'User-Agent':"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}
+    resp = requests.get(url,impersonate="chrome110",headers=headers)
     soup = BeautifulSoup(resp.text,'html.parser')
     res_type = 1
     
     results = soup.find_all(class_='s-card-container s-overflow-hidden aok-relative puis-expand-height puis-include-content-margin puis puis-v32s3p1fquq4652buqesabfpl6j s-latency-cf-section s-card-border')
-    
+    # print(soup.prettify)
     if(len(results)==0):
-        results = soup.find_all(class_="s-card-container s-overflow-hidden aok-relative puis-include-content-margin puis puis-v32s3p1fquq4652buqesabfpl6j s-latency-cf-section s-card-border")
+        results = soup.find_all(class_="s-card-container s-overflow-hidden aok-relative puis-include-content-margin puis puis-v20azwp0smsgc01ytmkntf1rk7n s-latency-cf-section s-card-border")
         resp=2
 
 
@@ -77,7 +76,7 @@ def scrap_amazon(category):
     return product_list
 
 
-print(scrap_amazon("laptop"))
+# print(scrap_amazon("Mobiles"))
 
 def scrap_flipkart(category):
     pass
